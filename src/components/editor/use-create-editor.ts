@@ -70,7 +70,7 @@ const mockTable = {
               label: 'reference_1',
               children: [
                 {
-                  text: '1',
+                  text: 'im a custom element, nested within a table, and will vanish after later editor.tf.setValue updates',
                 },
               ],
               url: '',
