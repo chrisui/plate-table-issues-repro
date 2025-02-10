@@ -168,6 +168,8 @@ export const useCreateEditor = () => {
     value: mockValue,
   });
 
+  // this effect with a timeout simulates the use case of
+  // fetching a value from a server and loading into editor
   useEffect(() => {
     const t = setTimeout(() => {
       editor.tf.setValue(cloneDeep(mockValue));
