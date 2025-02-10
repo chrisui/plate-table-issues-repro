@@ -16,6 +16,7 @@
     "@udecode/plate": "^43.0.5",
     "@udecode/plate-basic-elements": "^43.1.0",
     "@udecode/plate-basic-marks": "^43.0.1",
+    "@udecode/plate-table": "43.0.0",
     "class-variance-authority": "0.7.1",
     "clsx": "^2.1.1",
     "lucide-react": "0.474.0",

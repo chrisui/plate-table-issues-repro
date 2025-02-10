@@ -15,9 +15,75 @@ import {
   PlateLeaf,
   usePlateEditor,
 } from '@udecode/plate/react';
+import {
+  TableCellHeaderPlugin,
+  TableCellPlugin,
+  TablePlugin,
+  TableRowPlugin,
+} from '@udecode/plate-table/react';
+import {
+  TableCellElement,
+  TableCellHeaderElement,
+} from '@/components/plate-ui/table-cell-element';
+import { TableElement } from '@/components/plate-ui/table-element';
+import { TableRowElement } from '@/components/plate-ui/table-row-element';
+
+const mockTable = {
+  children: [
+    {
+      children: [
+        {
+          children: [
+            {
+              children: [
+                {
+                  text: 'Rule',
+                },
+              ],
+              type: 'p',
+            },
+          ],
+          type: 'th',
+        },
+      ],
+      type: 'tr',
+    },
+    {
+      children: [
+        {
+          children: [
+            {
+              children: [
+                {
+                  text: 'The clinical evaluation shall be conducted by an evaluator or a team of evaluators who possess knowledge of research methodology, including clinical investigation design and biostatistics. ',
+                },
+              ],
+              type: 'p',
+            },
+            {
+              type: 'klarisReference',
+              identifier: 'klaris_reference_1',
+              label: 'klaris_reference_1',
+              children: [
+                {
+                  text: '1',
+                },
+              ],
+              url: '',
+              title: 'test title',
+            },
+          ],
+          type: 'td',
+        },
+      ],
+      type: 'tr',
+    },
+  ],
+  type: 'table',
+};
 
 export const useCreateEditor = () => {
-  return usePlateEditor({
+  const editor = usePlateEditor({
     override: {
       components: {
         blockquote: withProps(PlateElement, {
@@ -45,9 +111,20 @@ export const useCreateEditor = () => {
         }),
         [StrikethroughPlugin.key]: withProps(PlateLeaf, { as: 's' }),
         [UnderlinePlugin.key]: withProps(PlateLeaf, { as: 'u' }),
+        [TableCellHeaderPlugin.key]: TableCellHeaderElement,
+        [TableCellPlugin.key]: TableCellElement,
+        [TablePlugin.key]: TableElement,
+        [TableRowPlugin.key]: TableRowElement,
       },
     },
-    plugins: [BasicElementsPlugin, BasicMarksPlugin],
+    plugins: [
+      BasicElementsPlugin,
+      BasicMarksPlugin,
+      TableCellHeaderPlugin,
+      TableCellPlugin,
+      TablePlugin,
+      TableRowPlugin,
+    ],
     value: [
       {
         children: [{ text: 'Basic Editor' }],
@@ -79,6 +156,9 @@ export const useCreateEditor = () => {
         ],
         type: ParagraphPlugin.key,
       },
+      mockTable,
     ],
   });
+
+  return editor;
 };

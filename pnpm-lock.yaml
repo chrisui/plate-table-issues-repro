@@ -17,6 +17,9 @@ dependencies:
   '@udecode/plate-basic-marks':
     specifier: ^43.0.1
     version: 43.0.1(@udecode/plate@43.0.5)(react-dom@19.0.0)(react@19.0.0)
+  '@udecode/plate-table':
+    specifier: 43.0.0
+    version: 43.0.0(@udecode/plate@43.0.5)(react-dom@19.0.0)(react@19.0.0)
   class-variance-authority:
     specifier: 0.7.1
     version: 0.7.1
@@ -946,6 +949,46 @@ packages:
       react-dom: '*'
     dependencies:
       '@udecode/plate': 43.0.5(@types/react@19.0.8)(react-dom@19.0.0)(react@19.0.0)(slate-dom@0.112.2)(slate@0.112.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    dev: false
+
+  /@udecode/plate-node-id@43.0.0(@udecode/plate@43.0.5)(react-dom@19.0.0)(react@19.0.0):
+    resolution: {integrity: sha512-NkdyYgsKSiHDD6wwK9WpjpnrWmzv/ZXIgwaI9tPInR/hSeorx2Y9bxOJJb2DZ+D1AGcR1A1R1wo2FHYCz0jrsQ==}
+    peerDependencies:
+      '@udecode/plate': '>=43.0.0'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      '@udecode/plate': 43.0.5(@types/react@19.0.8)(react-dom@19.0.0)(react@19.0.0)(slate-dom@0.112.2)(slate@0.112.0)
+      lodash: 4.17.21
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    dev: false
+
+  /@udecode/plate-resizable@43.0.0(@udecode/plate@43.0.5)(react-dom@19.0.0)(react@19.0.0):
+    resolution: {integrity: sha512-wUlZqi9MwtMc2xELcdt1qJNXMK3FUl7KfnZYCQ7pbB/wFMLOT4sT81UXSq0gzYyJjnWCWJ3Ki0vZydSd5pqzfA==}
+    peerDependencies:
+      '@udecode/plate': '>=43.0.0'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      '@udecode/plate': 43.0.5(@types/react@19.0.8)(react-dom@19.0.0)(react@19.0.0)(slate-dom@0.112.2)(slate@0.112.0)
+      react: 19.0.0
+      react-dom: 19.0.0(react@19.0.0)
+    dev: false
+
+  /@udecode/plate-table@43.0.0(@udecode/plate@43.0.5)(react-dom@19.0.0)(react@19.0.0):
+    resolution: {integrity: sha512-0x1SLcnU25sJ2DH+MBPxejUQV7GfzgzcCGvkfjmaoNAeqEurQuy7z3Je/o/CjisBHl+I+UceIWd39eKs3GAPEA==}
+    peerDependencies:
+      '@udecode/plate': '>=43.0.0'
+      react: '*'
+      react-dom: '*'
+    dependencies:
+      '@udecode/plate': 43.0.5(@types/react@19.0.8)(react-dom@19.0.0)(react@19.0.0)(slate-dom@0.112.2)(slate@0.112.0)
+      '@udecode/plate-node-id': 43.0.0(@udecode/plate@43.0.5)(react-dom@19.0.0)(react@19.0.0)
+      '@udecode/plate-resizable': 43.0.0(@udecode/plate@43.0.5)(react-dom@19.0.0)(react@19.0.0)
+      lodash: 4.17.21
       react: 19.0.0
       react-dom: 19.0.0(react@19.0.0)
     dev: false
