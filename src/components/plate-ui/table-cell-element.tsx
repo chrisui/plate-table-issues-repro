@@ -5,15 +5,9 @@ import React from 'react';
 import type { TTableCellElement } from '@udecode/plate-table';
 
 import { cn, withProps, withRef } from '@udecode/cn';
-import {
-  TablePlugin,
-  TableRowPlugin,
-  useTableCellElement,
-  useTableCellElementResizable,
-} from '@udecode/plate-table/react';
+import { TablePlugin, useTableCellElement } from '@udecode/plate-table/react';
 import {
   useEditorPlugin,
-  useElementSelector,
   useReadOnly,
   PlateElement,
 } from '@udecode/plate/react';
@@ -29,21 +23,10 @@ export const TableCellElement = withRef<
   const readOnly = useReadOnly();
   const element = props.element as TTableCellElement;
 
-  const rowId = useElementSelector(([node]) => node.id as string, [], {
-    key: TableRowPlugin.key,
-  });
-  const isSelectingRow = false;
   const isSelectionAreaVisible = false;
 
   const { borders, colIndex, colSpan, minHeight, rowIndex, selected, width } =
     useTableCellElement();
-
-  const { bottomProps, hiddenLeft, leftProps, rightProps } =
-    useTableCellElementResizable({
-      colIndex,
-      colSpan,
-      rowIndex,
-    });
 
   return (
     <PlateElement

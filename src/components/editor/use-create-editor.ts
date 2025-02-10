@@ -1,5 +1,6 @@
 'use client';
 
+import { cloneDeep } from 'lodash';
 import { withProps } from '@udecode/cn';
 import { BasicElementsPlugin } from '@udecode/plate-basic-elements/react';
 import {
@@ -27,6 +28,9 @@ import {
 } from '@/components/plate-ui/table-cell-element';
 import { TableElement } from '@/components/plate-ui/table-element';
 import { TableRowElement } from '@/components/plate-ui/table-row-element';
+import { useEffect } from 'react';
+import { RefPlugin } from '@/components/editor/plugins/ref-plugin';
+import { RefElement } from '@/components/plate-ui/ref-element';
 
 const mockTable = {
   children: [
@@ -55,15 +59,15 @@ const mockTable = {
             {
               children: [
                 {
-                  text: 'The clinical evaluation shall be conducted by an evaluator or a team of evaluators who possess knowledge of research methodology, including clinical investigation design and biostatistics. ',
+                  text: 'Some text in a paragraph. ',
                 },
               ],
               type: 'p',
             },
             {
-              type: 'klarisReference',
-              identifier: 'klaris_reference_1',
-              label: 'klaris_reference_1',
+              type: 'ref',
+              identifier: 'reference_1',
+              label: 'reference_1',
               children: [
                 {
                   text: '1',
@@ -81,6 +85,40 @@ const mockTable = {
   ],
   type: 'table',
 };
+
+const mockValue = [
+  {
+    children: [{ text: 'Basic Editor' }],
+    type: 'h1',
+  },
+  {
+    children: [{ text: 'Heading 2' }],
+    type: 'h2',
+  },
+  {
+    children: [{ text: 'Heading 3' }],
+    type: 'h3',
+  },
+  {
+    children: [{ text: 'This is a blockquote element' }],
+    type: 'blockquote',
+  },
+  {
+    children: [
+      { text: 'Basic marks: ' },
+      { bold: true, text: 'bold' },
+      { text: ', ' },
+      { italic: true, text: 'italic' },
+      { text: ', ' },
+      { text: 'underline', underline: true },
+      { text: ', ' },
+      { strikethrough: true, text: 'strikethrough' },
+      { text: '.' },
+    ],
+    type: ParagraphPlugin.key,
+  },
+  mockTable,
+];
 
 export const useCreateEditor = () => {
   const editor = usePlateEditor({
@@ -115,6 +153,7 @@ export const useCreateEditor = () => {
         [TableCellPlugin.key]: TableCellElement,
         [TablePlugin.key]: TableElement,
         [TableRowPlugin.key]: TableRowElement,
+        [RefPlugin.key]: RefElement,
       },
     },
     plugins: [
@@ -124,41 +163,18 @@ export const useCreateEditor = () => {
       TableCellPlugin,
       TablePlugin,
       TableRowPlugin,
+      RefPlugin,
     ],
-    value: [
-      {
-        children: [{ text: 'Basic Editor' }],
-        type: 'h1',
-      },
-      {
-        children: [{ text: 'Heading 2' }],
-        type: 'h2',
-      },
-      {
-        children: [{ text: 'Heading 3' }],
-        type: 'h3',
-      },
-      {
-        children: [{ text: 'This is a blockquote element' }],
-        type: 'blockquote',
-      },
-      {
-        children: [
-          { text: 'Basic marks: ' },
-          { bold: true, text: 'bold' },
-          { text: ', ' },
-          { italic: true, text: 'italic' },
-          { text: ', ' },
-          { text: 'underline', underline: true },
-          { text: ', ' },
-          { strikethrough: true, text: 'strikethrough' },
-          { text: '.' },
-        ],
-        type: ParagraphPlugin.key,
-      },
-      mockTable,
-    ],
+    value: mockValue,
   });
+
+  useEffect(() => {
+    const t = setTimeout(() => {
+      editor.tf.setValue(cloneDeep(mockValue));
+    }, 1000);
+
+    return () => clearTimeout(t);
+  }, []);
 
   return editor;
 };
